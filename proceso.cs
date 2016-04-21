@@ -27,3 +27,21 @@ public int guardar(int dni,String apellido,String nombre,String direccion, int t
             }
 
         }
+
+public DataTable listar()
+        {
+            try
+            {
+                Conexion con = new Conexion();
+                con.Conectar();
+                con.CrearComando("SELECT * FROM DATOS");
+                
+               return con.EjecutarDataTable();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Proceso Guardar: " + ex.ToString(), "Error");
+                return null;
+            }
+        }
