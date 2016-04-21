@@ -45,3 +45,25 @@ public DataTable listar()
                 return null;
             }
         }
+
+
+public int eliminar(int dni)
+        {
+            try
+            {
+                Conexion con = new Conexion();
+                con.Conectar();
+                con.CrearComando("DELETE FROM DATOS WHERE DNI = ?dni");
+                con.AsignarParametro("?dni", MySqlDbType.Int64, dni);
+                int numReg = 0;
+                numReg = con.EjecutarConsulta();
+                con.Desconectar();
+                return numReg;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Proceso Guardar: " + ex.ToString(), "Error");
+                return 0;
+            }
+            
+        }
